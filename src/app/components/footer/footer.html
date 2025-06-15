@@ -1,0 +1,37 @@
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-text">
+        <p>{{ t('footer.copyright') }}</p>
+      </div>
+
+      <div class="footer-links">
+        <button mat-button (click)="scrollToSection('hero')">{{ t('nav.home') }}</button>
+        <button mat-button (click)="scrollToSection('about')">{{ t('nav.about') }}</button>
+        <button mat-button (click)="scrollToSection('projects')">{{ t('nav.projects') }}</button>
+        <button mat-button (click)="scrollToSection('contact')">{{ t('nav.contact') }}</button>
+      </div>
+
+      <!-- Selector de idioma en footer -->
+      <div class="footer-language">
+        <button mat-icon-button [matMenuTriggerFor]="langMenu">
+          <mat-icon>language</mat-icon>
+        </button>
+        <mat-menu #langMenu="matMenu">
+          <button mat-menu-item (click)="changeLanguage('es')"
+                  [class.active]="currentLanguage === 'es'">
+            <mat-icon>flag</mat-icon>
+            <span>{{ t('nav.language.spanish') }}</span>
+          </button>
+          <button mat-menu-item (click)="changeLanguage('en')"
+                  [class.active]="currentLanguage === 'en'">
+            <mat-icon>flag</mat-icon>
+            <span>{{ t('nav.language.english') }}</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</footer>

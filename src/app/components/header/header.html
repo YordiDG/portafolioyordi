@@ -1,0 +1,90 @@
+<!-- NAVBAR -->
+<mat-toolbar [class.scrolled]="isScrolled" class="navbar">
+  <div class="nav-container">
+    <!-- Logo completamente a la izquierda -->
+    <div class="logo" (click)="scrollToSection('hero')">
+      <img src="assets/images/logo.png" width="80" height="40">
+    </div>
+
+    <!-- Navegación desktop en el centro -->
+    <nav class="desktop-nav">
+      <button mat-button (click)="scrollToSection('hero')">{{ t('nav.home') }}</button>
+      <button mat-button (click)="scrollToSection('about')">{{ t('nav.about') }}</button>
+      <button mat-button (click)="scrollToSection('skills')">{{ t('nav.skills') }}</button>
+      <button mat-button (click)="scrollToSection('projects')">{{ t('nav.projects') }}</button>
+      <button mat-button (click)="scrollToSection('contact')">{{ t('nav.contact') }}</button>
+    </nav>
+
+    <!-- Botón menú móvil completamente a la derecha -->
+    <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Overlay para cerrar el sidebar -->
+<div class="mobile-nav-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+<!-- Sidebar móvil desde la derecha - Mejorado -->
+<div class="mobile-nav" [class.active]="isMobileMenuOpen">
+  <!-- Botón cerrar -->
+  <button mat-icon-button class="close-btn" (click)="closeMobileMenu()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- Logo en el menú móvil -->
+  <div class="mobile-logo">
+    <div class="logo-icon"></div>
+    <div class="logo-text">
+      <div class="brand-name">{{ t('nav.brand') }}</div>
+      <div class="brand-subtitle">{{ t('nav.brand.subtitle') }}</div>
+    </div>
+  </div>
+
+  <!-- Items de navegación -->
+  <button mat-button class="nav-item" (click)="scrollToSection('hero'); closeMobileMenu()">
+    {{ t('nav.home') }}
+  </button>
+  <button mat-button class="nav-item" (click)="scrollToSection('about'); closeMobileMenu()">
+    {{ t('nav.about') }}
+  </button>
+  <button mat-button class="nav-item" (click)="scrollToSection('skills'); closeMobileMenu()">
+    {{ t('nav.skills') }}
+  </button>
+  <button mat-button class="nav-item" (click)="scrollToSection('projects'); closeMobileMenu()">
+    {{ t('nav.projects') }}
+  </button>
+  <button mat-button class="nav-item" (click)="scrollToSection('contact'); closeMobileMenu()">
+    {{ t('nav.contact') }}
+  </button>
+
+  <!-- Selector de idioma -->
+  <div class="language-selector">
+    <button
+      class="lang-option"
+      [class.active]="currentLanguage === 'es'"
+      (click)="changeLanguage('es')">
+      {{ t('nav.language.spanish') }}
+    </button>
+    <div class="separator"></div>
+    <button
+      class="lang-option"
+      [class.active]="currentLanguage === 'en'"
+      (click)="changeLanguage('en')">
+      {{ t('nav.language.english') }}
+    </button>
+  </div>
+</div>
+
+
+<!-- Loading Spinner -->
+<div class="loading-overlay" *ngIf="isLoading">
+  <mat-spinner diameter="50"></mat-spinner>
+</div>
+
+<!-- Scroll to top button -->
+<button mat-fab color="primary" class="scroll-to-top"
+        [class.visible]="showScrollTop"
+        (click)="scrollToTop()">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>

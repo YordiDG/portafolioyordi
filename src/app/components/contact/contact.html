@@ -1,0 +1,282 @@
+<section id="contact" class="contact-section">
+  <div class="container">
+    <!-- Header mejorado -->
+    <div class="section-header" data-aos="fade-up">
+      <div class="header-content">
+        <h2 class="section-title">{{ t('contact.title') }}</h2>
+        <p class="section-subtitle">{{ t('contact.subtitle') }}</p>
+        <div class="header-divider"></div>
+      </div>
+    </div>
+
+    <div class="contact-content">
+      <!-- Información de Contacto Mejorada -->
+      <div class="contact-info-container" data-aos="fade-right" data-aos-delay="100">
+        <div class="contact-info">
+          <div class="info-header">
+            <div>
+              <h3>{{ t('contact.info.title') }}</h3>
+              <p class="info-description">{{ t('contact.info.description') }}</p>
+            </div>
+          </div>
+
+          <div class="contact-details">
+            <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="item-icon">
+                <mat-icon>email</mat-icon>
+              </div>
+              <div class="item-content">
+                <h4>{{ t('contact.info.email') }}</h4>
+                <a href="mailto:victoryorddiazgonzales@gmail.com" class="contact-link">
+                  <span>{{ email }}</span>
+                  <mat-icon class="external-icon">open_in_new</mat-icon>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+              <div class="item-icon">
+                <mat-icon>phone</mat-icon>
+              </div>
+              <div class="item-content">
+                <h4>{{ t('contact.info.phone') }}</h4>
+                <a href="tel:+51902411155" class="contact-link">
+                  <span>+51 902 411 155</span>
+                  <mat-icon class="external-icon">call</mat-icon>
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
+              <div class="item-icon">
+                <mat-icon>location_on</mat-icon>
+              </div>
+              <div class="item-content">
+                <h4>{{ t('contact.info.location') }}</h4>
+                <span class="location-text">{{ t('contact.info.location.value') }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links Mejorados -->
+          <div class="social-links" data-aos="fade-up" data-aos-delay="600">
+            <h4 class="social-title">
+              <mat-icon>share</mat-icon>
+              {{ t('contact.social.title') }}
+            </h4>
+            <div class="social-buttons">
+              <button mat-fab color="primary"
+                      (click)="openRedes('https://www.linkedin.com/in/victor-yordi')"
+                      class="social-btn linkedin"
+                      matTooltip="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </button>
+              <button mat-fab color="accent"
+                      (click)="openRedes('https://github.com/YordiDG')"
+                      class="social-btn github"
+                      matTooltip="GitHub">
+                <i class="fab fa-github"></i>
+              </button>
+              <button mat-fab color="warn"
+                      (click)="openRedes('https://www.linkedin.com/in/yordi-diaz/')"
+                      class="social-btn portfolio"
+                      matTooltip="Portfolio">
+                <mat-icon>web</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de Contacto Mejorado -->
+      <div class="contact-form-container" data-aos="fade-left" data-aos-delay="200">
+        <div class="form-wrapper">
+          <div class="form-header">
+
+            <div class="form-title-section">
+              <h3>{{ t('contact.form.title') }}</h3>
+              <p>{{ t('contact.form.description') }}</p>
+            </div>
+          </div>
+
+          <!-- Estado del formulario -->
+          <div class="form-status" *ngIf="formStatus">
+            <div class="status-message"
+                 [ngClass]="{'success': formStatus === 'success', 'error': formStatus === 'error', 'sending': formStatus === 'sending'}">
+              <mat-icon>
+                {{ formStatus === 'success' ? 'check_circle' : formStatus === 'error' ? 'error' : 'hourglass_empty' }}
+              </mat-icon>
+              <span>{{ getStatusMessage() }}</span>
+            </div>
+          </div>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+            <!-- Información Personal -->
+            <div class="form-section">
+              <div class="form-grid">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ t('contact.form.name') }}</mat-label>
+                  <input class="form-input"  matInput formControlName="name"
+                         [placeholder]="t('contact.form.name.placeholder')"
+                         autocomplete="name">
+                  <mat-icon color="primary" matPrefix>person_outline</mat-icon>
+                  <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+                    {{ t('contact.form.name.error') }}
+                  </mat-error>
+                  <mat-error *ngIf="contactForm.get('name')?.hasError('minlength')">
+                    {{ t('contact.form.name.error.minlength') }}
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ t('contact.form.email') }}</mat-label>
+                  <input class="form-input"  matInput type="email" formControlName="email"
+                         [placeholder]="t('contact.form.email.placeholder')"
+                         autocomplete="email">
+                  <mat-icon color="primary"  matPrefix>email</mat-icon>
+                  <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+                    {{ t('contact.form.error.email.required') }}
+                  </mat-error>
+                  <mat-error *ngIf="contactForm.get('email')?.hasError('email')">
+                    {{ t('contact.form.error.email.required') }}
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-grid">
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ t('contact.info.phone') }}</mat-label>
+                  <input class="form-input"  matInput formControlName="phone"
+                         [placeholder]="t('contact.info.phone')"
+                         autocomplete="tel">
+                  <mat-icon color="primary" matPrefix>phone</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="form-field">
+                  <mat-label>{{ t('contact.info.company') }}</mat-label>
+                  <input class="form-input"  matInput formControlName="company"
+                         [placeholder]="t('contact.info.company')"
+                         autocomplete="organization">
+                  <mat-icon color="primary"  matPrefix>business</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <!-- Información del Mensaje -->
+            <div class="form-section">
+              <h4 style="color: #0f172a" class="section-label">
+                <mat-icon>message</mat-icon>
+                {{ t('contact.form.subject') }}
+              </h4>
+
+              <mat-form-field appearance="outline" class="form-field full-width">
+                <mat-label>{{ t('contact.form.subject.placeholder') }}</mat-label>
+                <mat-select formControlName="subject">
+                  <mat-option [value]="'general'">{{ t('contact.form.subject.general') }}</mat-option>
+                  <mat-option [value]="'project'">{{ t('contact.form.subject.project') }}</mat-option>
+                  <mat-option [value]="'collaboration'">{{ t('contact.form.subject.collaboration') }}</mat-option>
+                  <mat-option [value]="'consultation'">{{ t('contact.form.subject.consultation') }}</mat-option>
+                  <mat-option [value]="'other'">{{ t('contact.form.subject.other') }}</mat-option>
+                </mat-select>
+                <mat-icon color="primary" matPrefix>subject</mat-icon>
+                <mat-error *ngIf="contactForm.get('subject')?.hasError('required')">
+                  {{ t('contact.form.subject.error') }}
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field full-width">
+                <mat-label>{{ t('contact.form.message') }}</mat-label>
+                <textarea class="form-input"  matInput rows="6" formControlName="message"
+                          [placeholder]="t('contact.form.message.placeholder')"
+                          maxlength="1000"></textarea>
+                <mat-icon matPrefix>chat_bubble_outline</mat-icon>
+                <mat-hint align="end">
+                  {{ getMessageLength() }}/1000
+                </mat-hint>
+                <mat-error *ngIf="contactForm.get('message')?.hasError('required')">
+                  {{ t('contact.form.message.error') }}
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('message')?.hasError('minlength')">
+                  {{ t('contact.form.message.error.minlength') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Adjuntar Archivos -->
+            <div class="form-section">
+              <h4 class="section-label">
+                <mat-icon>attach_file</mat-icon>
+                {{ t('contact.form.cv.upload') }}
+              </h4>
+
+              <div class="file-upload-area"
+                   [class.drag-over]="isDragOver"
+                   (dragover)="onDragOver($event)"
+                   (dragleave)="onDragLeave($event)"
+                   (drop)="onFileDrop($event)">
+                <input type="file" #fileInput
+                       (change)="onFileSelected($event)"
+                       accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                       multiple
+                       style="display: none;">
+
+                <div class="upload-content">
+                  <mat-icon class="upload-icon">cloud_upload</mat-icon>
+                  <h5>{{ t('contact.form.attachments.title') }}</h5>
+                  <p>{{ t('contact.form.attachments.description') }}</p>
+                  <button type="button" mat-stroked-button
+                          (click)="fileInput.click()"
+                          class="browse-btn">
+                    <mat-icon>folder_open</mat-icon>
+                    {{ t('contact.form.attachments.browse') }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Lista de archivos seleccionados -->
+              <div class="selected-files" *ngIf="selectedFiles.length > 0">
+                <h5>{{ t('contact.form.cv.selected') }}:</h5>
+                <div class="file-list">
+                  <div class="file-item" *ngFor="let file of selectedFiles; let i = index">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    <div class="file-info">
+                      <span class="file-name">{{ file.name }}</span>
+                      <span class="file-size">{{ formatFileSize(file.size) }}</span>
+                    </div>
+                    <button type="button" mat-icon-button
+                            (click)="removeFile(i)"
+                            class="remove-file-btn">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="form-actions">
+              <button type="button" mat-stroked-button
+                      (click)="resetForm()"
+                      [disabled]="isSubmitting"
+                      class="reset-btn">
+                <mat-icon>refresh</mat-icon>
+                {{ t('contact.form.reset') }}
+              </button>
+
+              <button type="submit" mat-raised-button color="primary"
+                      [disabled]="!contactForm.valid || isSubmitting"
+                      class="submit-btn">
+                <mat-icon *ngIf="!isSubmitting">send</mat-icon>
+                <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+                {{ isSubmitting ? t('contact.form.sending') : t('contact.form.submit') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+

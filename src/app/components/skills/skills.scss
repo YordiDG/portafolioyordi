@@ -1,0 +1,733 @@
+@import '../../../styles.scss';
+
+.skills-section {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-3xl) 0;
+  margin-top: var(--spacing-xl);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(63, 81, 181, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(233, 30, 99, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-2xl) 0;
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-lg);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+}
+
+// ===== TABS PERSONALIZADOS CORREGIDOS =====
+.skills-tabs {
+  // Forzar estilos en el contenedor principal
+  ::ng-deep .mat-mdc-tab-group {
+    background: transparent !important;
+
+    // ===== HEADER DE TABS =====
+    .mat-mdc-tab-header {
+      background: var(--bg-secondary) !important;
+      border-radius: var(--border-radius-xl) !important;
+      box-shadow: var(--shadow-sm) !important;
+      margin-bottom: var(--spacing-3xl) !important;
+      padding: var(--spacing-sm) !important;
+      border: none !important;
+
+      // ===== DESKTOP TABS (pantallas grandes) =====
+      @media (min-width: 992px) {
+        overflow: visible !important;
+
+        .mat-mdc-tab-label-container {
+          .mat-mdc-tab-list {
+            display: flex !important;
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+          }
+
+          .mat-mdc-tab-labels {
+            display: flex !important;
+            justify-content: center !important;
+          }
+
+          .mat-mdc-tab-label {
+            min-width: 140px !important;
+            max-width: none !important;
+            width: auto !important;
+            padding: var(--spacing-md) var(--spacing-lg) !important;
+            margin: 0 var(--spacing-xs) !important;
+            border-radius: var(--border-radius-md) !important;
+            font-weight: 500 !important;
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            opacity: 1 !important;
+            @include transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
+
+            .mdc-tab__text-label {
+              color: inherit !important;
+            }
+
+            &:hover {
+              background: rgba(63, 81, 181, 0.1) !important;
+              color: var(--primary-color) !important;
+              transform: translateY(-1px) !important;
+              border-color: var(--primary-color) !important;
+
+              .mdc-tab__text-label {
+                color: var(--primary-color) !important;
+              }
+            }
+
+            &.mdc-tab--active {
+              background: var(--gradient-accent) !important;
+              color: var(--text-light) !important;
+              box-shadow: var(--shadow-sm) !important;
+              transform: translateY(-2px) !important;
+              border-color: transparent !important;
+
+              .mdc-tab__text-label {
+                color: var(--text-light) !important;
+              }
+            }
+          }
+        }
+
+        .mat-mdc-tab-header-pagination {
+          display: none !important;
+        }
+
+        // Ocultar el indicador por defecto en desktop
+        .mdc-tab-indicator {
+          display: none !important;
+        }
+      }
+
+      // ===== MOBILE CAROUSEL TABS (pantallas pequeñas) =====
+      @media (max-width: 991px) {
+        padding: var(--spacing-xs) !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        scroll-behavior: smooth !important;
+
+        &::-webkit-scrollbar {
+          display: none !important;
+        }
+
+        .mat-mdc-tab-label-container {
+          display: flex !important;
+          flex-wrap: nowrap !important;
+          min-width: fit-content !important;
+          overflow: visible !important;
+
+          .mat-mdc-tab-list {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            gap: 8px !important;
+            padding: 0 var(--spacing-sm) !important;
+            min-width: fit-content !important;
+            width: auto !important;
+          }
+
+          .mat-mdc-tab-labels {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            min-width: fit-content !important;
+          }
+
+          .mat-mdc-tab-label {
+            min-width: auto !important;
+            max-width: none !important;
+            width: auto !important;
+            flex: 0 0 auto !important;
+            padding: 10px 16px !important;
+            margin: 0 4px !important;
+            border-radius: 20px !important;
+            font-weight: 500 !important;
+            font-size: 0.9rem !important;
+            white-space: nowrap !important;
+            opacity: 1 !important;
+            @include transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
+
+            // TAB NO SELECCIONADO - ROJO
+            color: white !important;
+            background: #dc2626 !important;
+            border: 1px solid #dc2626 !important;
+
+            .mdc-tab__text-label {
+              color: white !important;
+              font-size: 0.9rem !important;
+            }
+
+            &:hover {
+              background: #b91c1c !important;
+              transform: scale(1.02) !important;
+
+              .mdc-tab__text-label {
+                color: white !important;
+              }
+            }
+
+            // TAB SELECCIONADO - CELESTE CON FONDO BLANCO
+            &.mdc-tab--active {
+              color: #0891b2 !important;
+              background: white !important;
+              border: 2px solid #0891b2 !important;
+              box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3) !important;
+              transform: scale(1.05) !important;
+              font-weight: 600 !important;
+
+              .mdc-tab__text-label {
+                color: #0891b2 !important;
+                font-weight: 600 !important;
+              }
+            }
+          }
+        }
+
+        // Ocultar controles de paginación en móvil
+        .mat-mdc-tab-header-pagination,
+        .mat-mdc-tab-header-pagination-after,
+        .mat-mdc-tab-header-pagination-before {
+          display: none !important;
+        }
+
+        // Ocultar el indicador por defecto
+        .mdc-tab-indicator,
+        .mdc-tab-indicator__content {
+          display: none !important;
+        }
+
+        // Gradientes de desvanecimiento en los bordes
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 20px;
+          height: 100%;
+          background: linear-gradient(to right, var(--bg-secondary), transparent);
+          z-index: 10;
+          pointer-events: none;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 20px;
+          height: 100%;
+          background: linear-gradient(to left, var(--bg-secondary), transparent);
+          z-index: 10;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .mat-mdc-tab-body-wrapper {
+      .mat-mdc-tab-body {
+        .mat-mdc-tab-body-content {
+          overflow: visible !important;
+        }
+      }
+    }
+  }
+}
+
+// ===== MODO OSCURO - TABS CORREGIDO =====
+.dark-mode {
+  .skills-tabs {
+    ::ng-deep .mat-mdc-tab-group {
+      .mat-mdc-tab-header {
+        background: var(--bg-secondary) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+
+        // Desktop dark mode
+        @media (min-width: 992px) {
+          .mat-mdc-tab-label-container {
+            .mat-mdc-tab-label {
+              color: rgba(255, 255, 255, 0.9) !important;
+              background: rgba(255, 255, 255, 0.15) !important;
+              border: 1px solid rgba(255, 255, 255, 0.25) !important;
+
+              .mdc-tab__text-label {
+                color: rgba(255, 255, 255, 0.9) !important;
+              }
+
+              &:hover {
+                color: var(--primary-color) !important;
+                background: rgba(255, 255, 255, 0.25) !important;
+                border-color: var(--primary-color) !important;
+
+                .mdc-tab__text-label {
+                  color: var(--primary-color) !important;
+                }
+              }
+
+              &.mdc-tab--active {
+                color: var(--text-light) !important;
+                background: var(--gradient-accent) !important;
+                border-color: transparent !important;
+
+                .mdc-tab__text-label {
+                  color: var(--text-light) !important;
+                }
+              }
+            }
+          }
+        }
+
+        // Mobile dark mode - mantener los mismos colores
+        @media (max-width: 991px) {
+          &::before {
+            background: linear-gradient(to right, var(--bg-secondary), transparent) !important;
+          }
+
+          &::after {
+            background: linear-gradient(to left, var(--bg-secondary), transparent) !important;
+          }
+
+          .mat-mdc-tab-label-container {
+            .mat-mdc-tab-label {
+              // TAB NO SELECCIONADO - ROJO (igual en modo oscuro)
+              color: white !important;
+              background: #dc2626 !important;
+              border: 1px solid #dc2626 !important;
+
+              .mdc-tab__text-label {
+                color: white !important;
+              }
+
+              &:hover {
+                background: #b91c1c !important;
+
+                .mdc-tab__text-label {
+                  color: white !important;
+                }
+              }
+
+              // TAB SELECCIONADO - CELESTE CON FONDO BLANCO (igual en modo oscuro)
+              &.mdc-tab--active {
+                color: #0891b2 !important;
+                background: white !important;
+                border: 2px solid #0891b2 !important;
+                box-shadow: 0 2px 8px rgba(8, 145, 178, 0.3) !important;
+
+                .mdc-tab__text-label {
+                  color: #0891b2 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ===== MEJORAS ADICIONALES PARA MÓVIL =====
+@media (max-width: 991px) {
+  .skills-section {
+    padding: var(--spacing-2xl) 0;
+
+    .section-header {
+      margin-bottom: var(--spacing-2xl);
+      padding: var(--spacing-lg) 0;
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// ===== RESTO DEL CÓDIGO ORIGINAL (skills-grid, skill-item, etc.) =====
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-2xl);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-3xl);
+  }
+}
+
+.skill-item {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  @include transition(all, 0.4s, cubic-bezier(0.4, 0, 0.2, 1));
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(63, 81, 181, 0.15);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+
+    .skill-icon-wrapper {
+      transform: scale(1.1) rotate(5deg);
+      background: var(--gradient-primary);
+
+      .skill-icon {
+        color: white;
+      }
+    }
+
+    .skill-name {
+      color: var(--primary-color);
+    }
+
+    &::before {
+      opacity: 0.05;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    @include transition(opacity, 0.4s);
+    z-index: 0;
+  }
+
+  &.skill-animating {
+    .skill-bar {
+      animation: progressBarGlow 2s ease-in-out;
+    }
+
+    .skill-percentage {
+      animation: counterPulse 0.1s ease-in-out infinite;
+    }
+  }
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+
+  .skill-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-md);
+    background: rgba(63, 81, 181, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+    @include transition(all, 0.3s, cubic-bezier(0.4, 0, 0.2, 1));
+
+    .skill-icon {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      @include transition(all, 0.3s);
+    }
+  }
+
+  .skill-name {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    @include transition(color, 0.3s);
+  }
+
+  .skill-percentage {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    background: rgba(63, 81, 181, 0.1);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    min-width: 50px;
+    text-align: center;
+    @include transition(all, 0.3s);
+
+    &.counting {
+      animation: counterPulse 0.1s ease-in-out;
+    }
+  }
+}
+
+.skill-bar {
+  height: 8px !important;
+  border-radius: var(--border-radius-sm) !important;
+  background: var(--bg-light) !important;
+  overflow: hidden;
+  position: relative;
+
+  .mat-mdc-progress-bar-fill::after {
+    background: var(--gradient-primary) !important;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+      );
+      animation: skillBarShine 2s ease-in-out infinite;
+    }
+  }
+
+  .mat-mdc-progress-bar-buffer {
+    background: var(--bg-light) !important;
+  }
+
+  &.skill-bar-animate {
+    .mat-mdc-progress-bar-fill::after {
+      animation: skillBarFill 1.5s ease-out;
+    }
+  }
+}
+
+.database-tools-content {
+  display: grid;
+  gap: var(--spacing-3xl);
+
+  .database-section,
+  .tools-section {
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-xl);
+      position: relative;
+      padding-left: var(--spacing-3xl);
+      display: flex;
+      align-items: center;
+
+      .section-icon {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: var(--border-radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+// ===== ANIMACIONES =====
+@keyframes skillIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes counterPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    background: rgba(63, 81, 181, 0.2);
+  }
+}
+
+@keyframes progressBarGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(63, 81, 181, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+  }
+}
+
+@keyframes skillBarFill {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes skillBarShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.skill-item {
+  animation: skillIconFloat 4s ease-in-out infinite;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.2}s;
+    }
+  }
+}
+
+@keyframes skillItemEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@include respond-to('sm') {
+  .skills-section {
+    .section-header {
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .skill-item {
+    padding: var(--spacing-2xl);
+  }
+
+  .skill-header {
+    .skill-icon-wrapper {
+      width: 55px;
+      height: 55px;
+
+      .skill-icon {
+        font-size: 1.8rem;
+      }
+    }
+
+    .skill-name {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@include respond-to('md') {
+  .skills-section {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+@include respond-to('lg') {
+  .skills-section {
+    padding: var(--spacing-3xl) 0 var(--spacing-3xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-item,
+  .skill-icon-wrapper,
+  .skill-bar {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.skills-loading {
+  .skill-item {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+      );
+      animation: loading-shimmer 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes loading-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

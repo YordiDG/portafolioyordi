@@ -1,0 +1,140 @@
+<!-- PROJECTS SECTION -->
+<section id="projects" class="projects-section">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">{{ t('projects.title') }}</h2>
+      <p class="section-subtitle">{{ t('projects.subtitle') }}</p>
+    </div>
+
+    <!-- Proyectos Destacados -->
+    <div class="featured-projects" data-aos="fade-up" data-aos-delay="200">
+      <h3>{{ t('projects.featured') }}</h3>
+      <div class="projects-carousel">
+        <div class="projects-grid">
+          <mat-card class="project-card featured" *ngFor="let project of featuredProjects" data-aos="zoom-in">
+            <div class="project-image">
+              <img mat-card-image [src]="project.image" [alt]="project.title">
+              <div class="project-overlay">
+                <div class="project-actions">
+                  <button mat-fab color="primary" *ngIf="project.demoUrl"
+                          (click)="openRedes(project.demoUrl)">
+                    <mat-icon>launch</mat-icon>
+                  </button>
+                  <button mat-fab color="accent" *ngIf="project.githubUrl"
+                          (click)="openRedes(project.githubUrl)">
+                    <mat-icon>code</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <mat-card-content>
+              <mat-card-title>{{ project.title }}</mat-card-title>
+              <mat-card-subtitle>{{ project.category | titlecase }}</mat-card-subtitle>
+              <p>{{ project.description }}</p>
+
+              <div class="tech-stack">
+                <mat-chip-set>
+                  <!-- Continuación de la sección PROJECTS desde donde se cortó -->
+                  <mat-chip *ngFor="let tech of project.technologies" color="primary" selected>
+                    {{ tech }}
+                  </mat-chip>
+                </mat-chip-set>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros de Proyectos -->
+    <div class="project-filters" data-aos="fade-up" data-aos-delay="400">
+      <h3>{{ t('projects.all') }}</h3>
+      <div class="filter-buttons">
+        <button mat-stroked-button
+                [color]="selectedCategory === 'all' ? 'primary' : ''"
+                [class.active]="selectedCategory === 'all'"
+                (click)="filterProjects('all')">
+          {{ t('projects.filter.all') }}
+        </button>
+        <button mat-stroked-button
+                [color]="selectedCategory === 'fullstack' ? 'primary' : ''"
+                [class.active]="selectedCategory === 'fullstack'"
+                (click)="filterProjects('fullstack')">
+          {{ t('projects.filter.fullstack') }}
+        </button>
+        <button mat-stroked-button
+                [color]="selectedCategory === 'frontend' ? 'primary' : ''"
+                [class.active]="selectedCategory === 'frontend'"
+                (click)="filterProjects('frontend')">
+          {{ t('projects.filter.frontend') }}
+        </button>
+        <button mat-stroked-button
+                [color]="selectedCategory === 'mobile' ? 'primary' : ''"
+                [class.active]="selectedCategory === 'mobile'"
+                (click)="filterProjects('mobile')">
+          {{ t('projects.filter.mobile') }}
+        </button>
+        <button mat-stroked-button
+                [color]="selectedCategory === 'backend' ? 'primary' : ''"
+                [class.active]="selectedCategory === 'backend'"
+                (click)="filterProjects('backend')">
+          {{ t('projects.filter.backend') }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid de Proyectos -->
+    <div class="projects-grid-container" data-aos="fade-up" data-aos-delay="600">
+      <div class="projects-grid">
+        <mat-card class="project-card" *ngFor="let project of filteredProjects" data-aos="fade-up">
+          <div class="project-image">
+            <img mat-card-image [src]="project.image" [alt]="project.title">
+            <div class="project-overlay">
+              <div class="project-actions">
+                <button mat-fab color="primary" *ngIf="project.demoUrl"
+                        (click)="openRedes(project.demoUrl)">
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-fab color="accent" *ngIf="project.githubUrl"
+                        (click)="openRedes(project.githubUrl)">
+                  <mat-icon>code</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <mat-card-content>
+            <mat-card-title>{{ project.title }}</mat-card-title>
+            <mat-card-subtitle>{{ project.category | titlecase }}</mat-card-subtitle>
+            <p>{{ project.description }}</p>
+
+            <div class="tech-stack">
+              <mat-chip-set>
+                <mat-chip *ngFor="let tech of project.technologies" color="primary" selected>
+                  {{ tech }}
+                </mat-chip>
+              </mat-chip-set>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Proyectos Backend -->
+    <div class="backend-projects" data-aos="fade-up" data-aos-delay="800">
+      <h3>{{ t('projects.backend.additional') }}</h3>
+      <div class="backend-list">
+        <mat-card class="backend-item" *ngFor="let project of backendProjects">
+          <mat-card-content>
+            <div class="backend-icon">
+              <mat-icon>settings</mat-icon>
+            </div>
+            <p>{{ project }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
+

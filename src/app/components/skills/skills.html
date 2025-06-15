@@ -1,0 +1,152 @@
+<!-- SKILLS SECTION -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <!-- Header con mejor espaciado -->
+    <div class="section-header" data-aos="fade-up">
+      <h2 class="section-title">{{ t('skills.title') }}</h2>
+      <p class="section-subtitle">{{ t('skills.subtitle') }}</p>
+    </div>
+
+    <!-- Tabs con estilos mejorados -->
+    <mat-tab-group
+      mat-align-tabs="center"
+      class="skills-tabs"
+      data-aos="fade-up"
+      data-aos-delay="200"
+      (selectedTabChange)="onTabChange($event)">
+
+      <!-- Frontend Tab -->
+      <mat-tab [label]="t('skills.tab.frontend')">
+        <div class="skills-grid">
+          <div class="skill-item"
+               *ngFor="let skill of getSkillsByCategory('frontend'); let i = index; trackBy: trackBySkillName"
+               data-aos="zoom-in"
+               (mouseenter)="animateSkill(skill, i)"
+               #skillElement>
+            <div class="skill-header">
+              <div class="skill-icon-wrapper">
+                <i [class]="skill.icon" class="skill-icon"></i>
+              </div>
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-percentage">{{ skill.animatedLevel || 0 }}%</span>
+            </div>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="skill.animatedLevel || 0"
+              class="skill-bar">
+            </mat-progress-bar>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Backend Tab -->
+      <mat-tab [label]="t('skills.tab.backend')">
+        <div class="skills-grid">
+          <div class="skill-item"
+               *ngFor="let skill of getSkillsByCategory('backend'); let i = index; trackBy: trackBySkillName"
+               data-aos="zoom-in"
+               (mouseenter)="animateSkill(skill, i)"
+               #skillElement>
+            <div class="skill-header">
+              <div class="skill-icon-wrapper">
+                <i [class]="skill.icon" class="skill-icon"></i>
+              </div>
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-percentage">{{ skill.animatedLevel || 0 }}%</span>
+            </div>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="skill.animatedLevel || 0"
+              class="skill-bar">
+            </mat-progress-bar>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Mobile Tab -->
+      <mat-tab [label]="t('skills.tab.mobile')">
+        <div class="skills-grid">
+          <div class="skill-item"
+               *ngFor="let skill of getSkillsByCategory('mobile'); let i = index; trackBy: trackBySkillName"
+               data-aos="zoom-in"
+               (mouseenter)="animateSkill(skill, i)"
+               #skillElement>
+            <div class="skill-header">
+              <div class="skill-icon-wrapper">
+                <i [class]="skill.icon" class="skill-icon"></i>
+              </div>
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-percentage">{{ skill.animatedLevel || 0 }}%</span>
+            </div>
+            <mat-progress-bar
+              mode="determinate"
+              [value]="skill.animatedLevel || 0"
+              class="skill-bar">
+            </mat-progress-bar>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Database & Tools Tab -->
+      <mat-tab [label]="t('skills.tab.database-tools')">
+        <div class="database-tools-content">
+          <!-- Database Section -->
+          <div class="database-section">
+            <h4>
+              <i class="fas fa-database section-icon"></i>
+              {{ t('skills.databases') }}
+            </h4>
+            <div class="skills-grid">
+              <div class="skill-item"
+                   *ngFor="let skill of getSkillsByCategory('database'); let i = index; trackBy: trackBySkillName"
+                   data-aos="zoom-in"
+                   (mouseenter)="animateSkill(skill, i)"
+                   #skillElement>
+                <div class="skill-header">
+                  <div class="skill-icon-wrapper">
+                    <i [class]="skill.icon" class="skill-icon"></i>
+                  </div>
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.animatedLevel || 0 }}%</span>
+                </div>
+                <mat-progress-bar
+                  mode="determinate"
+                  [value]="skill.animatedLevel || 0"
+                  class="skill-bar">
+                </mat-progress-bar>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools Section -->
+          <div class="tools-section">
+            <h4>
+              <i class="fas fa-tools section-icon"></i>
+              {{ t('skills.tools') }}
+            </h4>
+            <div class="skills-grid">
+              <div class="skill-item"
+                   *ngFor="let skill of getSkillsByCategory('tools'); let i = index; trackBy: trackBySkillName"
+                   data-aos="zoom-in"
+                   (mouseenter)="animateSkill(skill, i)"
+                   #skillElement>
+                <div class="skill-header">
+                  <div class="skill-icon-wrapper">
+                    <i [class]="skill.icon" class="skill-icon"></i>
+                  </div>
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-percentage">{{ skill.animatedLevel || 0 }}%</span>
+                </div>
+                <mat-progress-bar
+                  mode="determinate"
+                  [value]="skill.animatedLevel || 0"
+                  class="skill-bar">
+                </mat-progress-bar>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>
